@@ -1,7 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test', function () {
-    echo "Test";
-});
+Route::get('/cards', [CardController::class, 'index'])->name('cards');

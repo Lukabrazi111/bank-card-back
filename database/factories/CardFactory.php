@@ -17,7 +17,10 @@ class CardFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'number' => fake()->creditCardNumber(),
+            'expiry_date' => fake()->dateTimeBetween(now(), '+6 years'),
+            'security_code' => fake()->numerify(),
+            'is_saved' => fake()->boolean(),
         ];
     }
 }
