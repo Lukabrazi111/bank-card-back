@@ -16,9 +16,11 @@ class CardResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number' => $this->number,
-            'expiry_date' => $this->expiry_date,
-            'security_code' => $this->security_code,
+            'number' => $this->masked_number,
+            'expiration_year' => $this->expiration_year,
+            'expiration_month' => $this->expiration_month,
+            // e.g. security reason
+            'security_code' => '***',
             'is_saved' => $this->is_saved,
         ];
     }

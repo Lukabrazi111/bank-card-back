@@ -14,15 +14,17 @@ class Card extends Model
 
     protected $fillable = [
         'number',
-        'expiry_date',
+        'expiration_year',
+        'expiration_month',
         'security_code',
         'is_saved',
     ];
 
-    public function expiryDate(): Attribute
-    {
-        return new Attribute(
-            get: fn(string $value) => Carbon::parse($value)->format('m/y'),
+    protected $appends = ['masked_number'];
+
+    public function maskedNumber(): Attribute {
+        return Attribute::make(
+            get: fn () => substr($this->number, -4),
         );
     }
 }

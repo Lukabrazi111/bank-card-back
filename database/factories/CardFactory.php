@@ -13,12 +13,14 @@ class CardFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * @throws RandomException
      */
     public function definition(): array
     {
         return [
             'number' => fake()->creditCardNumber(),
-            'expiry_date' => fake()->dateTimeBetween(now(), '+6 years'),
+            'expiration_year' => fake()->numberBetween(2025, 2035),
+            'expiration_month' => fake()->month(),
             'security_code' => fake()->numerify(),
             'is_saved' => fake()->boolean(),
         ];

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CardRequest;
 use App\Http\Resources\CardResource;
 use App\Models\Card;
-use Carbon\Carbon;
 
 class CardController extends Controller
 {
@@ -19,8 +19,15 @@ class CardController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(CardRequest $request)
     {
-        // save card in database using custom form request
+        $validated = $request->validated();
+
+        $card = Card::create($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'card' => new CardResource($card),
+        ]);
     }
 }

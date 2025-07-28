@@ -13,7 +13,8 @@ return new class extends Migration {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->timestamp('expiry_date');
+            $table->unsignedInteger('expiration_year');
+            $table->unsignedInteger('expiration_month');
             $table->string('security_code');
             $table->boolean('is_saved')->default(0);
             $table->timestamps();
