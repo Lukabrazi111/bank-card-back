@@ -11,7 +11,7 @@ class CardController extends Controller
     public function index()
     {
         // We could add here if card is belongs to user.
-        $cards = Card::where('is_saved', true)->get();
+        $cards = Card::where('is_saved', true)->limit(2)->get();
 
         return response()->json([
             'status' => 'success',
